@@ -8,6 +8,8 @@ on:
     - cron: '0 18 * * *'
   workflow_dispatch:
 
+concurrency: docker-build
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,3 +37,5 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/42-devcontainer:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/42-devcontainer:${{ github.sha }}
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/42-devcontainer:cache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/42-devcontainer:cache,mode=max
