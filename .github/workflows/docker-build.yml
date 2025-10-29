@@ -27,6 +27,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Log in to GitHub Container Repository
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -37,5 +44,11 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/42-devcontainer:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/42-devcontainer:${{ github.sha }}
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/42-devcontainer:cache
-          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/42-devcontainer:cache,mode=max
+            ghcr.io/${{ github.repository_owner }}/42-devcontainer:latest
+            ghcr.io/${{ github.repository_owner }}/42-devcontainer:${{ github.sha }}
+          cache-from: |
+            type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/42-devcontainer:cache
+            type=registry,ref=ghcr.io/${{ github.repository_owner }}/42-devcontainer:cache
+          cache-to: |
+            type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/42-devcontainer:cache,mode=max
+            type=registry,ref=ghcr.io/${{ github.repository_owner }}/42-devcontainer:cache,mode=max
