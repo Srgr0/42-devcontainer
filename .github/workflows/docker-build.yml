@@ -49,6 +49,6 @@ jobs:
 #          cache-from: |
 #            type=registry,ref=srgr0/42-devcontainer:cache
 #            type=registry,ref=ghcr.io/srgr0/42-devcontainer:cache
-#          cache-to: |
-#            type=registry,ref=srgr0/42-devcontainer:cache,mode=max
-#            type=registry,ref=ghcr.io/srgr0/42-devcontainer:cache,mode=max
+          cache-to: |
+            type=registry,ref=srgr0/42-devcontainer:cache,mode=max
+            type=registry,ref=ghcr.io/srgr0/42-devcontainer:cache,mode=max
