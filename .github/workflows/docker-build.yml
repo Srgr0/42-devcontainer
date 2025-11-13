@@ -46,9 +46,9 @@ jobs:
             srgr0/42-devcontainer:${{ github.sha }}
             ghcr.io/srgr0/42-devcontainer:latest
             ghcr.io/srgr0/42-devcontainer:${{ github.sha }}
-          cache-from: |
-            type=registry,ref=srgr0/42-devcontainer:cache
-            type=registry,ref=ghcr.io/srgr0/42-devcontainer:cache
-          cache-to: |
-            type=registry,ref=srgr0/42-devcontainer:cache,mode=max
-            type=registry,ref=ghcr.io/srgr0/42-devcontainer:cache,mode=max
+#          cache-from: |
+#            type=registry,ref=srgr0/42-devcontainer:cache
+#            type=registry,ref=ghcr.io/srgr0/42-devcontainer:cache
+#          cache-to: |
+#            type=registry,ref=srgr0/42-devcontainer:cache,mode=max
+#            type=registry,ref=ghcr.io/srgr0/42-devcontainer:cache,mode=max
